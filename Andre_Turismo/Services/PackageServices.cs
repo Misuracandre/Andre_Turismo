@@ -50,6 +50,42 @@ namespace Andre_Turismo.Services
             return status;
         }
 
+        public int InsertHotel(Package package)
+        {
+            string strInsert = "insert into Hotel (Name, Address)" + "values (@Name, @Address); select cast(scope_identity() as int)";
+
+            SqlCommand commandInsert = new SqlCommand(strInsert, conn);
+            commandInsert.Parameters.Add(new SqlParameter("@Name", package.Hotel.Name));
+            commandInsert.Parameters.Add(new SqlParameter("@Address", package.Hotel.Address));
+
+            return (int)commandInsert.ExecuteScalar();
+        }
+
+        public int InsertTicket(Package package)
+        {
+            string strInsert = "insert into Ticket (Origin, Destination, Client, Value)" + "values (@Origin, @Destination, @Client, @Value); select cast(scope_identity() as int)";
+
+            SqlCommand commandInsert = new SqlCommand(strInsert, conn);
+            commandInsert.Parameters.Add(new SqlParameter("@Origin", package.Ticket.Origin));
+            commandInsert.Parameters.Add(new SqlParameter("@Destination", package.Ticket.Destination));
+            commandInsert.Parameters.Add(new SqlParameter("@Client", package.Ticket.Client));
+            commandInsert.Parameters.Add(new SqlParameter("@Value", package.Ticket.Value));
+
+            return (int)commandInsert.ExecuteScalar();
+        }
+
+        public int InsertClient(Package package)
+        {
+            string strInsert = "insert into Client (Name, Phone, Address)" + "values (@Name, @Phone, @Address); select cast(scope_identity() as int)";
+
+            SqlCommand commandInsert = new SqlCommand(strInsert, conn);
+            commandInsert.Parameters.Add(new SqlParameter("@Name", package.Client.Name));
+            commandInsert.Parameters.Add(new SqlParameter("@Phone", package.Client.Phone));
+            commandInsert.Parameters.Add(new SqlParameter("@Address", package.Client.Address));
+
+            return (int)commandInsert.ExecuteScalar();
+        }
+
         public List<Package> FindAll()
         {
             List<Package> package = new();
