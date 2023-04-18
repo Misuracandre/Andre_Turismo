@@ -25,14 +25,14 @@ namespace Andre_Turismo.Services
 
             try
             {
-                string strInsert = "insert into Package (Hotel, Ticket, Value, Client, Registration_Date)" + "values (@Hotel, @Ticket, @Value, @Client, @Registration_Date";
+                string strInsert = "insert into Package (IdHotel, IdTicket, Value, IdClient, Registration_Date)" + "values (@IdHotel, @IdTicket, @Value, @IdClient, @Registration_Date";
 
                 SqlCommand commandInsert = new SqlCommand(strInsert, conn);
 
-                commandInsert.Parameters.Add(new SqlParameter("@Hotel", package.Hotel));
-                commandInsert.Parameters.Add(new SqlParameter("@Ticket", package.Ticket));
+                commandInsert.Parameters.Add(new SqlParameter("@Hotel", InsertHotel(package)));
+                commandInsert.Parameters.Add(new SqlParameter("@Ticket", InsertTicket(package)));
                 commandInsert.Parameters.Add(new SqlParameter("@Value", package.Value));
-                commandInsert.Parameters.Add(new SqlParameter("@Client", package.Value));
+                commandInsert.Parameters.Add(new SqlParameter("@Client", InsertClient(package)));
                 commandInsert.Parameters.Add(new SqlParameter("@Registration_Date", package.Registration_Date));
 
                 commandInsert.ExecuteNonQuery();
@@ -84,6 +84,14 @@ namespace Andre_Turismo.Services
             commandInsert.Parameters.Add(new SqlParameter("@Address", package.Client.Address));
 
             return (int)commandInsert.ExecuteScalar();
+        }
+
+        public int InsertAddress(Address address)
+        {
+            string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension, City)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension, @City); select cast(scope_identity() as int)";
+
+            SqlCommand commandInsert = new SqlCommand(strInsert, conn);
+            commandInsert.Parameters.Add(new SqlParameter("@Street", package.Address));
         }
 
         //public List<Package> FindAll()
