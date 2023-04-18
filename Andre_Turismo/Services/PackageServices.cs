@@ -85,15 +85,6 @@ namespace Andre_Turismo.Services
 
             return (int)commandInsert.ExecuteScalar();
         }
-
-        public int InsertAddress(Address address)
-        {
-            string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension, City)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension, @City); select cast(scope_identity() as int)";
-
-            SqlCommand commandInsert = new SqlCommand(strInsert, conn);
-            commandInsert.Parameters.Add(new SqlParameter("@Street", package.Address));
-        }
-
         //public List<Package> FindAll()
         //{
         //    List<Package> package = new();

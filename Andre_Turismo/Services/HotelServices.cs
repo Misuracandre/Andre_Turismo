@@ -49,7 +49,7 @@ namespace Andre_Turismo.Services
 
         public int InsertAddress(Hotel hotel)
         {
-            string strInsert = "insert into Hotel (Street, Number, Neighborhood, ZipCode, Extension)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension); select cast(scope_identity() as int";
+            string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension); select cast(scope_identity() as int";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Street", hotel.Address.Street));
