@@ -8,11 +8,11 @@ using Andre_Turismo.Services;
 
 namespace Andre_Turismo.Controllers
 {
-    public class PackageController
+    public class AddressControllers
     {
-        public bool Insert(Package package)
+        public bool Insert(Address address)
         {
-            return new PackageServices().Insert(package);
+            return new AddressServices().Insert(address);
         }
     }
 }

@@ -8,11 +8,11 @@ using Andre_Turismo.Services;
 
 namespace Andre_Turismo.Controllers
 {
-    public class PackageController
+    public class ClientControllers
     {
-        public bool Insert(Package package)
+        public bool Insert(Client client)
         {
-            return new PackageServices().Insert(package);
+            return new ClientServices().Insert(client);
         }
     }
 }

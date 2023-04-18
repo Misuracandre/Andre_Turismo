@@ -8,11 +8,11 @@ using Andre_Turismo.Services;
 
 namespace Andre_Turismo.Controllers
 {
-    public class PackageController
+    public class HotelControllers
     {
-        public bool Insert(Package package)
+        public bool Insert(Hotel hotel)
         {
-            return new PackageServices().Insert(package);
+            return new HotelServices().Insert(hotel);
         }
     }
 }
