@@ -86,21 +86,21 @@ namespace Andre_Turismo.Services
             return (int)commandInsert.ExecuteScalar();
         }
 
-        public List<Package> FindAll()
-        {
-            List<Package> package = new();
+        //public List<Package> FindAll()
+        //{
+        //    List<Package> package = new();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Select p.Id, ");
-            sb.Append("       p.Hotel, ");
-            sb.Append("       p.Ticket, ");
-            sb.Append("       p.Value, ");
-            sb.Append("       p.Client, ");
-            sb.Append("       p.Registration_Date");
-            sb.Append("  from Package p, ");
-            sb.Append("       ");
+        //    StringBuilder sb = new StringBuilder();
+        //    sb.Append("Select p.Id, ");
+        //    sb.Append("       p.Hotel, ");
+        //    sb.Append("       p.Ticket, ");
+        //    sb.Append("       p.Value, ");
+        //    sb.Append("       p.Client, ");
+        //    sb.Append("       p.Registration_Date");
+        //    sb.Append("  from Package p, ");
+        //    sb.Append("       ");
 
-            return package;
-        }
+        //    return package;
+        //}
     }
 }

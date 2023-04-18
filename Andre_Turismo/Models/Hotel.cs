@@ -15,7 +15,7 @@ namespace Andre_Turismo.Models
 
         public override string ToString()
         {
-            return $"Id: {Id} \nName: {Name} \nAddress: {Address} \nRegistration Date: {Registration_Date}";
+            return $"Name: {Name} \nAddress: {Address}";
         }
     }
 }
