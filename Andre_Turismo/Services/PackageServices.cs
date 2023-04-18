@@ -63,6 +63,8 @@ namespace Andre_Turismo.Services
             sb.Append("       p.Registration_Date");
             sb.Append("  from Package p, ");
             sb.Append("       ");
+
+            return package;
         }
     }
 }
