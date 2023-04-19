@@ -31,15 +31,15 @@ namespace Andre_Turismo.Services
 
             try
             {
-                string strInsert = "insert into Package (IdHotel, IdTicket, Value, IdClient, Registration_Date)" + "values (@IdHotel, @IdTicket, @Value, @IdClient, @Registration_Date)";
+                string strInsert = "insert into Package (IdHotel, IdTicket, Value, IdClient)" + "values (@IdHotel, @IdClient, @IdTicket, @Value)";
 
                 SqlCommand commandInsert = new SqlCommand(strInsert, conn);
 
                 commandInsert.Parameters.Add(new SqlParameter("@IdHotel", InsertHotel(package)));
+                commandInsert.Parameters.Add(new SqlParameter("@IdClient", InsertClient(package)));
                 commandInsert.Parameters.Add(new SqlParameter("@IdTicket", InsertTicket(package)));
                 commandInsert.Parameters.Add(new SqlParameter("@Value", package.Value));
-                commandInsert.Parameters.Add(new SqlParameter("@IdClient", InsertClient(package)));
-                commandInsert.Parameters.Add(new SqlParameter("@Registration_Date", package.Registration_Date));
+                
 
                 commandInsert.ExecuteNonQuery();
                 status = true;
