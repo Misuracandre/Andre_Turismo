@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Andre_Turismo.Models;
 
 namespace Andre_Turismo.Models
 {
@@ -17,9 +18,9 @@ namespace Andre_Turismo.Models
         public City City { get; set; }
         public DateTime Registration_Date { get; set; }
 
-        public override string ToString()
-        {
-            return $"Street: {Street}| Number: {Number}| Neighborhood: {Neighborhood}| ZipCode: {ZipCode}| Extension: {Extension}| City: {City}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"Street: {Street}| Number: {Number}| Neighborhood: {Neighborhood}| ZipCode: {ZipCode}| Extension: {Extension}| City: {City}";
+        //}
     }
 }

@@ -54,10 +54,11 @@ namespace Andre_Turismo.Services
         {
             int id = 0;
 
-            string strInsert = "insert into Address (Street)" + "values (@Street); select cast(scope_identity() as int)";
+            string strInsert = "insert into Address (Street, IdCity)" + "values (@Street, @IdCity); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Street", ticket.Origin.Street));
+            commandInsert.Parameters.Add(new SqlParameter("@IdCity", ticket.Origin.City));
 
             id = (int)commandInsert.ExecuteScalar();
             return id;
@@ -67,10 +68,11 @@ namespace Andre_Turismo.Services
         {
             int id = 0;
 
-            string strInsert = "insert into Address (Neighborhood)" + "values (@Neighborhood); select cast(scope_identity() as int)";
+            string strInsert = "insert into Address (Neighborhood, IdCity)" + "values (@Neighborhood, @IdCity); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Neighborhood", ticket.Destination.Neighborhood));
+            commandInsert.Parameters.Add(new SqlParameter("@IdCity", ticket.Destination.City));
 
             id = (int)commandInsert.ExecuteScalar();
             return id;
