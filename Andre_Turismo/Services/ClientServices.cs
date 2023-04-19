@@ -11,6 +11,8 @@ namespace Andre_Turismo.Services
 {
     public class ClientServices
     {
+
+        int id = 0;
         readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\Proj_Tourism.mdf;";
         readonly SqlConnection conn;
 
@@ -51,7 +53,7 @@ namespace Andre_Turismo.Services
 
         public int InsertAddress(Client client)
         {
-            int id = 0;
+            
 
             string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension); select cast(scope_identity() as int)";
 
@@ -63,6 +65,7 @@ namespace Andre_Turismo.Services
             commandInsert.Parameters.Add(new SqlParameter("@Extension", client.Address.Extension));
 
             id = (int)commandInsert.ExecuteScalar();
+           
             return id;
         } 
     }

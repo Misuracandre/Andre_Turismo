@@ -10,6 +10,7 @@ namespace Andre_Turismo.Services
 {
     public class PackageServices
     {
+        //readonly AddressServices _addressServices;
         readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\Proj_Tourism.mdf";
         readonly SqlConnection conn;
 
@@ -18,6 +19,11 @@ namespace Andre_Turismo.Services
             conn = new SqlConnection(strConn);
             conn.Open();
         }
+
+        //public PackageServices(AddressServices addressServices)
+        //{
+        //    _addressServices = addressServices;
+        //}
 
         public bool Insert(Package package)
         {
@@ -53,16 +59,22 @@ namespace Andre_Turismo.Services
         public int InsertHotel(Package package)
         {
             int hotelId = 0;
-            int addressId = 0;
+            //int cityId = Insert;
             
+            //int addressId = 0;
 
-            string strInsert = "insert into Hotel (Name, IdAddress)" + "values (@Name, @IdAddress); select cast(scope_identity() as int)";
+
+            string strInsert = "insert into Hotel (Name)" + "values (@Name); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Name", package.Hotel.Name));
-            commandInsert.Parameters.Add(new SqlParameter("@IdAddress", addressId));
+            
 
-            addressId = (int)commandInsert.ExecuteScalar();
+            string strSelectId = "select scope_identity() as id";
+            SqlCommand commandSelectId = new SqlCommand(strSelectId, conn);
+            
+
+            hotelId = (int)commandInsert.ExecuteScalar();
             return hotelId;
         }
 

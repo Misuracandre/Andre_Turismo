@@ -31,7 +31,8 @@ namespace Andre_Turismo.Services
                 commandInsert.Parameters.Add(new SqlParameter("@Description", city.Description));
 
                 id = (int) commandInsert.ExecuteScalar();
-                city.Id = id;
+                //city.Id = id;
+                
             }
             catch (Exception)
             {
