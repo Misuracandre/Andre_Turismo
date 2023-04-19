@@ -82,12 +82,12 @@ namespace Andre_Turismo.Services
         {
             int id = 0;
 
-            string strInsert = "insert into Ticket (Origin, Destination, Client, Value)" + "values (@Origin, @Destination, @Client, @Value); select cast(scope_identity() as int)";
+            string strInsert = "insert into Ticket (IdOrigin, IdDestination, IdClient, Value)" + "values (@IdOrigin, @IdDestination, @IdClient, @Value); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
-            commandInsert.Parameters.Add(new SqlParameter("@Origin", package.Ticket.Origin));
-            commandInsert.Parameters.Add(new SqlParameter("@Destination", package.Ticket.Destination));
-            commandInsert.Parameters.Add(new SqlParameter("@Client", package.Ticket.Client));
+            commandInsert.Parameters.Add(new SqlParameter("@IdOrigin", package.Ticket.Origin));
+            commandInsert.Parameters.Add(new SqlParameter("@IdDestination", package.Ticket.Destination));
+            commandInsert.Parameters.Add(new SqlParameter("@IdClient", package.Ticket.Client));
             commandInsert.Parameters.Add(new SqlParameter("@Value", package.Ticket.Value));
 
             id = (int)commandInsert.ExecuteScalar();
@@ -98,12 +98,12 @@ namespace Andre_Turismo.Services
         {
             int id = 0;
 
-            string strInsert = "insert into Client (Name, Phone, Address)" + "values (@Name, @Phone, @Address); select cast(scope_identity() as int)";
+            string strInsert = "insert into Client (Name, Phone, IdAddress)" + "values (@Name, @Phone, @IdAddress); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Name", package.Client.Name));
             commandInsert.Parameters.Add(new SqlParameter("@Phone", package.Client.Phone));
-            commandInsert.Parameters.Add(new SqlParameter("@Address", package.Client.Address));
+            commandInsert.Parameters.Add(new SqlParameter("@IdAddress", package.Client.Address));
 
             id = (int)commandInsert.ExecuteScalar();
             return id;
