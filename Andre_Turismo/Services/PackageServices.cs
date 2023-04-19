@@ -31,7 +31,7 @@ namespace Andre_Turismo.Services
 
             try
             {
-                string strInsert = "insert into Package (IdHotel, IdTicket, Value, IdClient, Registration_Date)" + "values (@IdHotel, @IdTicket, @Value, @IdClient, @Registration_Date";
+                string strInsert = "insert into Package (IdHotel, IdTicket, Value, IdClient, Registration_Date)" + "values (@IdHotel, @IdTicket, @Value, @IdClient, @Registration_Date)";
 
                 SqlCommand commandInsert = new SqlCommand(strInsert, conn);
 
@@ -85,8 +85,8 @@ namespace Andre_Turismo.Services
             string strInsert = "insert into Ticket (IdOrigin, IdDestination, IdClient, Value)" + "values (@IdOrigin, @IdDestination, @IdClient, @Value); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
-            commandInsert.Parameters.Add(new SqlParameter("@IdOrigin", package.Ticket.Origin));
-            commandInsert.Parameters.Add(new SqlParameter("@IdDestination", package.Ticket.Destination));
+            commandInsert.Parameters.Add(new SqlParameter("@IdOrigin", package.Ticket.Origin.Id));
+            commandInsert.Parameters.Add(new SqlParameter("@IdDestination", package.Ticket.Destination.Id));
             commandInsert.Parameters.Add(new SqlParameter("@IdClient", package.Ticket.Client));
             commandInsert.Parameters.Add(new SqlParameter("@Value", package.Ticket.Value));
 
@@ -103,7 +103,7 @@ namespace Andre_Turismo.Services
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Name", package.Client.Name));
             commandInsert.Parameters.Add(new SqlParameter("@Phone", package.Client.Phone));
-            commandInsert.Parameters.Add(new SqlParameter("@IdAddress", package.Client.Address));
+            commandInsert.Parameters.Add(new SqlParameter("@IdAddress", package.Client.Address.Id));
 
             id = (int)commandInsert.ExecuteScalar();
             return id;
