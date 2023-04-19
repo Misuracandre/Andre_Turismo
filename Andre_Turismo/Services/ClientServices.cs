@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Andre_Turismo.Models;
@@ -10,7 +11,7 @@ namespace Andre_Turismo.Services
 {
     public class ClientServices
     {
-        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\fly.mdf;";
+        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\Proj_Tourism.mdf;";
         readonly SqlConnection conn;
 
         public ClientServices()
@@ -25,7 +26,7 @@ namespace Andre_Turismo.Services
 
             try
             {
-                string strInsert = "insert into Client (Name, Phone, IdAddress)" + "values (@Name, @Phone, @Address)";
+                string strInsert = "insert into Client (Name, Phone, IdAddress)" + "values (@Name, @Phone, @IdAddress)";
 
                 SqlCommand commandInsert = new SqlCommand(strInsert, conn);
 
@@ -50,7 +51,9 @@ namespace Andre_Turismo.Services
 
         public int InsertAddress(Client client)
         {
-            string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension); select cast(scope_identity() as int";
+            int id = 0;
+
+            string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Street", client.Address.Street));
@@ -59,7 +62,8 @@ namespace Andre_Turismo.Services
             commandInsert.Parameters.Add(new SqlParameter("@ZipCode", client.Address.ZipCode));
             commandInsert.Parameters.Add(new SqlParameter("@Extension", client.Address.Extension));
 
-            return (int)commandInsert.ExecuteScalar();
-        }
+            id = (int)commandInsert.ExecuteScalar();
+            return id;
+        } 
     }
 }

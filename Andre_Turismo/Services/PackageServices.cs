@@ -10,7 +10,7 @@ namespace Andre_Turismo.Services
 {
     public class PackageServices
     {
-        readonly string strConn = @"Server=(localdb)/MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\Turismo.mdf";
+        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\Proj_Tourism.mdf";
         readonly SqlConnection conn;
 
         public PackageServices()
@@ -29,10 +29,10 @@ namespace Andre_Turismo.Services
 
                 SqlCommand commandInsert = new SqlCommand(strInsert, conn);
 
-                commandInsert.Parameters.Add(new SqlParameter("@Hotel", InsertHotel(package)));
-                commandInsert.Parameters.Add(new SqlParameter("@Ticket", InsertTicket(package)));
+                commandInsert.Parameters.Add(new SqlParameter("@IdHotel", InsertHotel(package)));
+                commandInsert.Parameters.Add(new SqlParameter("@IdTicket", InsertTicket(package)));
                 commandInsert.Parameters.Add(new SqlParameter("@Value", package.Value));
-                commandInsert.Parameters.Add(new SqlParameter("@Client", InsertClient(package)));
+                commandInsert.Parameters.Add(new SqlParameter("@IdClient", InsertClient(package)));
                 commandInsert.Parameters.Add(new SqlParameter("@Registration_Date", package.Registration_Date));
 
                 commandInsert.ExecuteNonQuery();
@@ -52,17 +52,24 @@ namespace Andre_Turismo.Services
 
         public int InsertHotel(Package package)
         {
-            string strInsert = "insert into Hotel (Name, Address)" + "values (@Name, @Address); select cast(scope_identity() as int)";
+            int hotelId = 0;
+            int addressId = 0;
+            
+
+            string strInsert = "insert into Hotel (Name, IdAddress)" + "values (@Name, @IdAddress); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Name", package.Hotel.Name));
-            commandInsert.Parameters.Add(new SqlParameter("@Address", package.Hotel.Address));
+            commandInsert.Parameters.Add(new SqlParameter("@IdAddress", addressId));
 
-            return (int)commandInsert.ExecuteScalar();
+            addressId = (int)commandInsert.ExecuteScalar();
+            return hotelId;
         }
 
         public int InsertTicket(Package package)
         {
+            int id = 0;
+
             string strInsert = "insert into Ticket (Origin, Destination, Client, Value)" + "values (@Origin, @Destination, @Client, @Value); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
@@ -71,11 +78,14 @@ namespace Andre_Turismo.Services
             commandInsert.Parameters.Add(new SqlParameter("@Client", package.Ticket.Client));
             commandInsert.Parameters.Add(new SqlParameter("@Value", package.Ticket.Value));
 
-            return (int)commandInsert.ExecuteScalar();
+            id = (int)commandInsert.ExecuteScalar();
+            return id;
         }
 
         public int InsertClient(Package package)
         {
+            int id = 0;
+
             string strInsert = "insert into Client (Name, Phone, Address)" + "values (@Name, @Phone, @Address); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
@@ -83,7 +93,8 @@ namespace Andre_Turismo.Services
             commandInsert.Parameters.Add(new SqlParameter("@Phone", package.Client.Phone));
             commandInsert.Parameters.Add(new SqlParameter("@Address", package.Client.Address));
 
-            return (int)commandInsert.ExecuteScalar();
+            id = (int)commandInsert.ExecuteScalar();
+            return id;
         }
         //public List<Package> FindAll()
         //{

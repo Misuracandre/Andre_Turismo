@@ -10,7 +10,7 @@ namespace Andre_Turismo.Services
 {
     public class HotelServices
     {
-        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\fly.mdf;";
+        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\Proj_Tourism.mdf;";
         readonly SqlConnection conn;
 
         public HotelServices()
@@ -49,7 +49,8 @@ namespace Andre_Turismo.Services
 
         public int InsertAddress(Hotel hotel)
         {
-            string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension); select cast(scope_identity() as int";
+            int id = 0;
+            string strInsert = "insert into Address (Street, Number, Neighborhood, ZipCode, Extension)" + "values (@Street, @Number, @Neighborhood, @ZipCode, @Extension); select cast(scope_identity() as int)";
 
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
             commandInsert.Parameters.Add(new SqlParameter("@Street", hotel.Address.Street));
@@ -58,7 +59,8 @@ namespace Andre_Turismo.Services
             commandInsert.Parameters.Add(new SqlParameter("@ZipCode", hotel.Address.ZipCode));
             commandInsert.Parameters.Add(new SqlParameter("@Extension", hotel.Address.Extension));
 
-            return (int)commandInsert.ExecuteScalar();
+            id = (int)commandInsert.ExecuteScalar();
+            return id;
 
 
         }

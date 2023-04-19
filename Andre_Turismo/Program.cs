@@ -52,11 +52,23 @@ Package package = new()
     Registration_Date = DateTime.Now
 };
 
-if (new PackageController().Insert(package))
-{
-    Console.WriteLine("Sucesso! Registro inserido!");
-}
-else
-{
-    Console.WriteLine("Erro ao inserir registro.");
-}
+//string returnInformationCity = (new CityControllers().Insert(city) ? "Cidade inserido" : "Erro");
+//Console.WriteLine(returnInformationCity);
+
+//string returnInformationAddress = (new AddressControllers().Insert(address) ? "Endereco inserido" : "Erro");
+//Console.WriteLine(returnInformationAddress);
+
+//string returnInformationClient = (new ClientControllers().Insert(client) ? "cliente inserido" : "Erro");
+//Console.WriteLine(returnInformationClient);
+
+//string returnInformationTicket = (new TicketControllers().Insert(ticket) ? "passagem inserido" : "Erro");
+//Console.WriteLine(returnInformationTicket);
+
+//string returnInformationHotel = (new HotelControllers().Insert(hotel) ? "hotel inserido" : "Erro");
+//Console.WriteLine(returnInformationHotel);
+
+string returnInformationPackage = (new PackageController().Insert(package) ? "pacote inserido" : "Erro");
+Console.WriteLine(returnInformationPackage);
+
+
+
