@@ -5,20 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using Andre_Turismo.Models;
 using Microsoft.Data.SqlClient;
+using Dapper;
+using System.Configuration;
+using Repositories;
 
 namespace Andre_Turismo.Services
 {
     public class PackageServices
     {
+        private ITurismoRepository packageRepository;
+
         //readonly AddressServices _addressServices;
         readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\Documents\Proj_Tourism.mdf";
         readonly SqlConnection conn;
 
         public PackageServices()
         {
-            conn = new SqlConnection(strConn);
-            conn.Open();
+            packageRepository = new PackageRepository();
         }
+
+        //public PackageServices()
+        //{
+        //    conn = new SqlConnection(strConn);
+        //    conn.Open();
+        //}
 
         //public PackageServices(AddressServices addressServices)
         //{
@@ -107,6 +117,11 @@ namespace Andre_Turismo.Services
 
             id = (int)commandInsert.ExecuteScalar();
             return id;
+        }
+
+        public List<Package> GetAll()
+        {
+            return packageRepository.GetAll();
         }
         //public List<Package> FindAll()
         //{

@@ -13,6 +13,6 @@ namespace Andre_Turismo.Models
         public Ticket Ticket { get; set; }
         public decimal Value { get; set; }
         public Client Client { get; set; }
-        public DateTime Registration_Date { get; set; }
+        //public DateTime Registration_Date { get; set; }
     }
 }

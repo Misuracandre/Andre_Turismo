@@ -16,7 +16,7 @@ namespace Andre_Turismo.Models
         public string ZipCode { get; set; }
         public string Extension { get; set; }
         public City City { get; set; }
-        public DateTime Registration_Date { get; set; }
+        //public DateTime Registration_Date { get; set; }
 
         //public override string ToString()
         //{

@@ -11,7 +11,7 @@ namespace Andre_Turismo.Models
         public Address Origin { get; set; }
         public Address Destination { get; set; }
         public Client Client { get; set; }
-        public DateTime Date { get; set; }
+        //public DateTime Date { get; set; }
         public decimal Value { get; set; }
     }
 }

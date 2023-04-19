@@ -11,7 +11,7 @@ namespace Andre_Turismo.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public Address Address { get; set; }
-        public DateTime Registration_Date { get; set; }
+        //public DateTime Registration_Date { get; set; }
 
         public override string ToString()
         {

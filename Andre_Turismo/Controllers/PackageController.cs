@@ -10,9 +10,21 @@ namespace Andre_Turismo.Controllers
 {
     public class PackageController
     {
+        private PackageServices packageServices;
+
+        public PackageController()
+        {
+            packageServices = new PackageServices();
+        }
+
         public bool Insert(Package package)
         {
-            return new PackageServices().Insert(package);
+            return packageServices.Insert(package);
+        }
+
+        public List<Package> GetAll()
+        {
+            return packageServices.GetAll();
         }
     }
 }
